@@ -9,16 +9,13 @@ interface Message {
 	timestamp?: number;
 }
 
-const WS_SERVER = import.meta.env.VITE_WS_SERVER;
-
-
 
 function Room() {
 	const { roomId, userName } = useParams();
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [isConnected, setIsConnected] = useState(false);
 	const wsRef = useRef<WebSocket | null>(null);
-	const inputRef = useRef<HTMLInputElement>(null);
+	const inputRef = useRef<HTMLInputElement | null>(null);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 
 	const navigate = useNavigate();
