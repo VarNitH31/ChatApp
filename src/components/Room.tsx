@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "./ui/Button";
-import dotenv from "dotenv";
 
 interface Message {
 	type: string;
@@ -10,8 +9,9 @@ interface Message {
 	timestamp?: number;
 }
 
-dotenv.config();
-const PORT = process.env.PORT;
+const WS_SERVER = import.meta.env.VITE_WS_SERVER;
+
+
 
 function Room() {
 	const { roomId, userName } = useParams();
@@ -81,7 +81,7 @@ function Room() {
 		}
 
 		// const ws = new WebSocket("ws://localhost:8080");
-		const ws = new WebSocket(`ws://${PORT}:8080`);
+		const ws = new WebSocket(`ws://3.106.122.185:8080`);
 
 		ws.onopen = () => {
 			setIsConnected(true);
